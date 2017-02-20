@@ -34,3 +34,4 @@ matrix:
 #       addons: {apt: {packages: [clang-3.8], sources: [ubuntu-toolchain-r-test,llvm-toolchain-precise-3.8]}}
 script:
   - CXX=$COMPILER make -C tests test
+  - perl tests/ascii_only.pl unilib

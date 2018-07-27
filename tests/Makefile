@@ -1,7 +1,6 @@
 include ../unilib/Makefile.include
 
 TESTS = compile normalization simple strip ucd
-UNICODE = 8.0.0
 
 .PHONY: all compile test
 all: compile
@@ -10,13 +9,13 @@ test: $(foreach test,$(TESTS),run_test_$(test))
 
 run_test_compile: test_compile
 run_test_normalization: test_normalization
-	xzcat ../gen/data/NormalizationTest-$(UNICODE).txt.xz | sed 's/ *[#@].*$$//;s/;$$//;/^$$/d' | ./$<
+	xzcat ../gen/data/NormalizationTest.txt.xz | sed 's/ *[#@].*$$//;s/;$$//;/^$$/d' | ./$<
 run_test_simple: test_simple
 	./$<
 run_test_strip: test_strip
 	./$<
 run_test_ucd: test_ucd
-	xzcat ../gen/data/UnicodeData-$(UNICODE).txt.xz | ./$<
+	xzcat ../gen/data/UnicodeData.txt.xz | ./$<
 
 test_compile: $(foreach src,$(UNILIB_OBJECTS),../unilib/$(src).cpp ../unilib/$(src).h)
 test_normalization: ../unilib/uninorms.cpp ../unilib/uninorms.h

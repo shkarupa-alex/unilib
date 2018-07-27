@@ -51,7 +51,7 @@ while (<$f>) {
   $code = hex($code);
 
   my $othercase;
-  $title = "" if hex($title) == $code;
+  $title = "" if hex($title) == $code && length($lower) && length($upper);
   if (length($lower) && !length($upper) && !length($title)) { $othercase = hex($lower) * 256 + 1; }
   elsif (!length($lower) && length($upper) && $upper eq $title) { $othercase = hex($upper) * 256 + 2; }
   elsif (!length($lower) && !length($upper) && !length($title)) { $othercase = 0; }
